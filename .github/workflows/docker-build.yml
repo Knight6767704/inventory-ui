@@ -1,4 +1,4 @@
-name: Build and Push Docker Images for Microfrontends using GitHub Actions
+name: Build and Push Docker Images for Microfrontends
 
 on:
   push:
@@ -46,6 +46,15 @@ jobs:
           docker build -f ./projects/${{ matrix.microfrontend }}/Dockerfile.${{ matrix.microfrontend }} \
             -t ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }} .
 
+      - name: Push Docker image for ${{ matrix.microfrontend }}
+        run: |
+          docker push ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }}
+
+      - name: Push Docker image with 'latest' tag
+        run: |
+          docker tag ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }} ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:latest
+          docker push ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:latest
+
       - name: Run Docker Scout Vulnerability Scan
         uses: docker/scout-action@v1
         with:
@@ -56,16 +65,3 @@ jobs:
           referrer: false
           write-comment: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          docker-scout-token: ${{ secrets.DOCKER_SCOUT_TOKEN }}
-
-
-      - name: Push Docker image for ${{ matrix.microfrontend }}
-        run: |
-          docker push ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }}
-
-      - name: Push Docker image with 'latest' tag
-        run: |
-          docker tag ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }} ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:latest
-          docker push ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:latest
-
-          
