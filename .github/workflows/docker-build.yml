@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        microfrontend: [admin, inventory, sales, shell, warehouse]
+        microfrontend: [admin, inventory, sales, shell, wearhouse]
 
     steps:
       # Checkout code
