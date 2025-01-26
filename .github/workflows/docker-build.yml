@@ -46,6 +46,12 @@ jobs:
           docker build -f ./projects/${{ matrix.microfrontend }}/Dockerfile.${{ matrix.microfrontend }} \
             -t ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }} .
 
+      - name: Run Docker Scout Vulnerability Scan
+        uses: docker/scout-action@v1
+        with:
+          image: ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }}
+          severity-threshold: high
+
       - name: Push Docker image for ${{ matrix.microfrontend }}
         run: |
           docker push ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }}
@@ -54,8 +60,3 @@ jobs:
         run: |
           docker tag ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }} ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:latest
           docker push ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:latest
-
-      # - name: Run Docker Scout vulnerability scan for ${{ matrix.microfrontend }}
-      #   uses: docker/scout-action@v1
-      #   with:
-      #     image: ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }}
