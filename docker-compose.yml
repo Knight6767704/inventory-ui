@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  shell:
+    build:
+      context: ./ 
+      dockerfile: ./projects/shell/Dockerfile.shell
+    ports:
+      - "7000:80" # Maps container port 80 to host port 7000
+    depends_on:
+      - admin
+      - inventory
+      - sales
+      - warehouse
+
+  admin:
+    build:
+      context: .
+      dockerfile: ./projects/admin/Dockerfile.admin
+    ports:
+      - "5000:80" # Maps container port 80 to host port 5000
+
+  inventory:
+    build:
+      context: .
+      dockerfile: ./projects/inventory/Dockerfile.inventory
+    ports:
+      - "4000:80" # Maps container port 80 to host port 4000
+
+  sales:
+    build:
+      context: .
+      dockerfile: ./projects/sales/Dockerfile.sales
+    ports:
+      - "3000:80" # Maps container port 80 to host port 3000
+
+  warehouse:
+    build:
+      context: .
+      dockerfile: ./projects/wearhouse/Dockerfile.wearhouse
+    ports:
+      - "8000:80" # Maps container port 80 to host port 8000

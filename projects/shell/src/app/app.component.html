@@ -1,0 +1,20 @@
+<!-- <h2>Shell</h2>
+<a [routerLink]="['Inventory']">Inventory</a><br>
+<a [routerLink]="['sale']">Sales</a><br>
+<a [routerLink]="['admin']">Admin</a><br>
+<a [routerLink]="['wearhouse']">Wearhouse</a>
+<h3>Microfrontends</h3> -->
+<div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3 col-lg-2 bg-light ">
+        <app-side-nav></app-side-nav>
+      </div>
+      <!-- Main Content -->
+      <div class="col-md-9 col-lg-10">
+        <div class="p-4">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>

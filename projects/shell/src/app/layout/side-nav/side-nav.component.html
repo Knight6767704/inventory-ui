@@ -1,0 +1,60 @@
+<!-- <h2>Shell</h2>
+<a [routerLink]="['Inventory']">Inventory</a><br>
+<a [routerLink]="['sale']">Sales</a><br>
+<a [routerLink]="['admin']">Admin</a><br>
+<a [routerLink]="['wearhouse']">Wearhouse</a>
+<h3>Microfrontends</h3> -->
+<div class="row">
+    <nav class="bg-light vh-100 p-3" id="sidebar" style="width: 250px;">
+        <h5 class="text-center">AWS</h5>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['admin']">
+                    Admin
+                </a>
+                <ul class="list-unstyled ps-3">
+                    <li><a class="nav-link text-dark" [routerLink]="['admin/profileManagement']">Profile Management</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['admin/userManagement']">User Management</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['Inventory']">Inventrory</a>
+                <ul class="list-unstyled ps-3">
+                    <li><a class="nav-link text-dark" [routerLink]="['Inventory/motion/transfer']">transfer</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['Inventory/motion/move']">move</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['Inventory/motion/hold']">hold</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['Inventory/adjustments/count']">count</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['Inventory/adjustments/adjustment']">adjustment</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['sale']">Sales</a>
+                <ul class="list-unstyled ps-3 ">
+                    <li><a class="nav-link text-dark" [routerLink]="['sale/chargecode']">Charge-code</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['sale/chargegroup']">Charge-group</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['sale/quatation']">quatation</a></li>
+
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['wearhouse']">Wearhouse</a>
+                <ul class="list-unstyled ps-3">
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/accounts/account']">Account</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/accounts/allocation']">allocation</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/accounts/entity']">entity</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/accounts/partner']">partner</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/accounts/putway']">putway</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/stockkeep/sku']">sku</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/stockkeep/skugroup']">sku_group</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/stockkeep/currency']">currency</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/stockkeep/location']">location</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/stockkeep/site']">site</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/stockkeep/zone']">zone</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/goods/goodsissue']">GI</a></li>
+                    <li><a class="nav-link text-dark" [routerLink]="['wearhouse/goods/goodsreceive']">GR</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+</div>

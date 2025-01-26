@@ -1,0 +1,31 @@
+/* Sidebar full height */
+#sidebar {
+    min-height: 100vh;
+  }
+  
+  /* Dropdown menu visibility */
+  #sidebar .list-unstyled {
+    padding-left: 20px;
+  }
+  
+  .nav-link.active {
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  @media (min-width: 992px) {
+    #sidebar {
+      display: block !important;
+    }
+  }
+  
+  @media (max-width: 991px) {
+    #sidebar {
+      display: none;
+    }
+  
+    #sidebar.d-block {
+      display: block !important;
+    }
+  }
+  

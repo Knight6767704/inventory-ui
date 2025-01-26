@@ -1,0 +1,36 @@
+# Stage 1: Build the Angular application
+FROM node:18 AS build-stage
+
+# Set working directory to the monorepo root
+WORKDIR /app
+
+# Copy package.json and package-lock.json to the container
+COPY package.json package-lock.json ./
+
+
+# Install dependencies
+RUN npm install
+
+# Copy the entire monorepo source code
+COPY . .
+
+RUN npm install -g @angular/cli@16
+
+
+# Build the specific microfrontend (wearhouse)
+RUN npm run build -- --project=wearhouse --output-path=dist/wearhouse --configuration production
+
+# Stage 2: Serve the application using Nginx
+FROM nginx:alpine AS production-stage
+
+COPY ./projects/shell/nginx.conf /etc/nginx/conf.d/default.conf
+
+
+# Copy the built wearhouse microfrontend to the Nginx HTML directory
+COPY --from=build-stage /app/dist/wearhouse /usr/share/nginx/html
+
+# Expose the port for this microfrontend (e.g., 4201 for wearhouse)
+EXPOSE 8000
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
