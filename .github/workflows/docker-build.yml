@@ -37,10 +37,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Preprocess repository owner to lowercase
-        id: preprocess
-        run: echo "REPO_OWNER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-
       - name: Build Docker image for ${{ matrix.microfrontend }}
         run: |
           docker build -f ./projects/${{ matrix.microfrontend }}/Dockerfile.${{ matrix.microfrontend }} \
@@ -65,5 +61,3 @@ jobs:
           referrer: false
           write-comment: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          docker-scout-token: ${{ secrets.DOCKER_SCOUT_TOKEN }}
-
