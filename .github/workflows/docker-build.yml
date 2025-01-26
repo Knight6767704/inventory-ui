@@ -58,6 +58,6 @@ jobs:
         uses: docker/scout-action@v1  # Change this to a stable version
         with:
           command: cves
-          image: ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }}
+          image: ${{ steps.meta.outputs.tags }}  # Ensure the correct tag output here
           only-severities: critical,high
           exit-code: true  # Set to true if you want to fail the action for critical/high vulnerabilities
