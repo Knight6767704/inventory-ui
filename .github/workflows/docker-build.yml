@@ -50,7 +50,8 @@ jobs:
         uses: docker/scout-action@v1
         with:
           image: ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }}
-          severity-threshold: high
+          only-severities: high,critical
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push Docker image for ${{ matrix.microfrontend }}
         run: |
