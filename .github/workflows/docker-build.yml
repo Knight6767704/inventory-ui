@@ -65,3 +65,5 @@ jobs:
           referrer: false
           write-comment: true
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          docker-scout-token: ${{ secrets.DOCKER_SCOUT_TOKEN }}
+
