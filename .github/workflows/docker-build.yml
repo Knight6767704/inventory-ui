@@ -58,4 +58,4 @@ jobs:
       - name: Run Docker Scout vulnerability scan for ${{ matrix.microfrontend }}
         uses: docker/scout-action@v1
         with:
-          dockerfile: ./projects/${{ matrix.microfrontend }}/Dockerfile.${{ matrix.microfrontend }}
+          image: ghcr.io/${{ env.REPO_OWNER }}/${{ matrix.microfrontend }}-ui:${{ github.sha }}
